@@ -1,0 +1,36 @@
+// Step 1: Setup
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Step 2: Homepage Route
+app.get('/', (req, res) => {
+  res.send('Welcome to the Ethical Hacking Resource Hub');
+});
+
+// Step 3: Report Vulnerability Form (Frontend posts here)
+app.post('/report', (req, res) => {
+  const { name, email, targetSystem, issueDetails } = req.body;
+
+  // Save to DB or send to review queue (mocked here)
+  console.log(`Report from ${name}: ${issueDetails} found in ${targetSystem}`);
+
+  res.send('Your vulnerability report has been submitted. Thank you!');
+});
+
+// Step 4: Educational Modules API
+app.get('/modules', (req, res) => {
+  res.json([
+    { id: 1, title: 'What is Ethical Hacking?' },
+    { id: 2, title: 'Responsible Disclosure Guide' },
+    { id: 3, title: 'Basic Recon Techniques (Legal)' }
+  ]);
+});
+
+app.listen(3000, () => {
+  console.log('Ethical hacking hub running on port 3000');
+});
