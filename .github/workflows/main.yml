@@ -6,9 +6,6 @@
   <style>
     body {
       <meta charset="UTF-8">
-      name: Deploy to GitHub Pages
-
-on:
   push:
     branches:
       - main
